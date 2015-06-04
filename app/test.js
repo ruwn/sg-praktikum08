@@ -3,31 +3,33 @@ angular.module('MyApp', ['ngMaterial']).
         var items = [];
         return {
             getFolders: function () {
-                return $http.get('http://localhost:8080/api/folder');
+                return $http.get('http://localhost:3000/mailapi/folders');
             },
             selectFolder: function (folder) {
-                return $http.get('http://localhost:8080/api/folder/' + folder);
+                return $http.get('http://localhost:3000/mailapi/shbyfolder/' + folder);
             },
             selectMail: function (mail) {
-                return $http.get('http://localhost:8080/api/msg/' + mail._id);
+                var url = 'http://localhost:3000/mailapi/show/' + mail._id;
+                console.log(url);
+                return $http.get(url);
             },
             deleteMail: function (mail) {
-                return $http.delete('http://localhost:8080/api/msg/' + mail._id);
+                return $http.delete('http://localhost:3000/mailapi/deletemail/' + mail._id);
             },
             deleteFolder: function (folder) {
-                return $http.delete('http://localhost:8080/api/folder/' + folder);
+                return $http.delete('http://localhost:3000/mailapi/deletefolder/' + folder);
             },
             renameFolder: function (folder, newName) {
-                return $http.put('http://localhost:8080/api/folder/' + folder, {newval: newName});
+                return $http.put('http://localhost:3000/mailapi/updfoldername/' + folder, {folder: newName});
             },
             moveFolder: function (mail, newName) {
-                return $http.put('http://localhost:8080/api/msg/'+mail._id, {folder: newName});
+                return $http.put('http://localhost:3000/mailapi/movemail/'+mail._id, {folder: newName});
             },
             newMail: function (mail) {
                 var recipients = mail.rec.split(';');
                 var paras = {sender: mail.sender, recipients: recipients, text: mail.text,subject: mail.subject,date: mail.date, folder:mail.folder};
                 console.log(paras);
-                return $http.post('http://localhost:8080/api/msg', paras);
+                return $http.post('http://localhost:3000/mailapi/createmail', paras);
             }
 
         };
@@ -124,12 +126,15 @@ angular.module('MyApp', ['ngMaterial']).
                 Mail.selectMail(mail).
                     success(function (data, status, headers, config) {
                         $scope.selectedMail = data;
+                        console.log("test.js.$scope.selectMail: ");
                         console.log(data);
                     });
             }
             if ($scope.selectedMail === null) {
                 $scope.mailOperations = true;
+                console.log("sollte nicht auftauchen");
             } else {
+                console.log(selectedMail);
                 $scope.mailOperations = false;
             }
         };
