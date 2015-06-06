@@ -18,14 +18,27 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hjs');
 
+<<<<<<< HEAD
+// uncomment after placing your favicon in /_public
+//app.use(favicon(__dirname + '/_public/favicon.ico'));
+=======
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+>>>>>>> 8f27f9d324df707a1ca6c9c6d41238fa06af818b
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(cookieParser());
-app.use(require('less-middleware')(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+<<<<<<< HEAD
+app.use(require('less-middleware')(path.join(__dirname, '_public/app')));
+//app.use(express.static(path.join(__dirname, '_public/')));
+app.use(express.static(path.join(__dirname, '_public/app/')));
+=======
+app.use(require('less-middleware')(path.join(__dirname, 'public/app')));
+//app.use(express.static(path.join(__dirname, 'public/')));
+app.use(express.static(path.join(__dirname, 'public/app/')));
+>>>>>>> 8f27f9d324df707a1ca6c9c6d41238fa06af818b
+
 //app.use(multer());
 
 app.use('/', routes);
