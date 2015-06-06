@@ -25,12 +25,8 @@ router.route('/folders').get(function(req, res){
 // Example id: 555343d9cf3dedf50aaa66db
 router.route('/show/:id').get(function(req, res){
   console.log("Requesting mail " + req.params.id);
-<<<<<<< HEAD
-  Mails.find({"_id" : req.params.id},{_id:1,sender:1,recipients:1,subject:1,text:1,date:1},
-=======
   Mails.find({"_id" : req.params.id},
            {"sender" : 1, "recipients" : 1, "date" : 1, "subject" : 1},
->>>>>>> 8f27f9d324df707a1ca6c9c6d41238fa06af818b
            function(err, mail){
              if (err){
                return res.send(err);
