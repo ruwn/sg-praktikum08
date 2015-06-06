@@ -1,6 +1,3 @@
-## TEMP
-*~
-
 # Logs
 logs
 *.log
@@ -28,20 +25,3 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
-
-##bower components
-bower_components/
-app/bower/
-
-##jspm
-app/jspm_packages
-
-
-## Webstorm
-.idea
-
-## VARIOUS
-tmp
-.DS_Store
-
-
